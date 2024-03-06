@@ -13,9 +13,14 @@ public class CameraController : MonoBehaviour
     private GameObject target;
     
     /// <summary>
-    /// The speed the camera moves to the target.
+    /// The speed the Camera moves to the target.
     /// </summary>
     private float speed;
+    
+    /// <summary>
+    /// The offset from the target for the Camera to go to.
+    /// </summary>
+    private Vector3 offset;
     
     /// <summary>
     /// Controls everything to do with the Camera.
@@ -40,11 +45,25 @@ public class CameraController : MonoBehaviour
     {
         this.target = target;
     }
+
+    /// <summary>
+    /// Changes the offset from the target for the Camera to follow.
+    /// </summary>
+    /// <param name="offset">The new offset.</param>
+    public void SetOffset(Vector3 offset)
+    {
+        this.offset = offset;
+    }
     
     public void LateUpdate()
     {
         Vector3 pos = this.transform.position;
-        Vector3 moveTo = new Vector3(Mathf.Lerp(pos.x, pos.x, speed), Mathf.Lerp(pos.y, pos.y, speed), Mathf.Lerp(pos.z, pos.z, speed));
+        Vector3 targetPos = target.transform.position;
+        Vector3 moveTo = new Vector3(
+            Mathf.Lerp(pos.x, targetPos.x + offset.x, speed), 
+            Mathf.Lerp(pos.y, targetPos.y + offset.y, speed), 
+            Mathf.Lerp(pos.z, targetPos.z + offset.z, speed)
+        );
         this.transform.position = moveTo;
     }
 }
