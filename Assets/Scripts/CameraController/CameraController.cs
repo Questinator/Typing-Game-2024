@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// The speed the Camera moves to the target.
     /// </summary>
-    public const float speed = 1.0f;
+    public float speed = 1.0f;
     
     /// <summary>
     /// The offset from the target for the Camera to go to.
