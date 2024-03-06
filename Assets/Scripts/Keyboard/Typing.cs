@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using KeyboardEvents;
 using TMPro;
 using Unity.VisualScripting;
@@ -6,23 +7,44 @@ using UnityEngine;
 
 public class Typing : MonoBehaviour
 {
-    private TextMeshProUGUI _text;
-    private IKeyboard _keyboard;
-    private string data = "";
+    [SerializeField] private string typingTarget;
+    [SerializeField] private Color unTypedColor;
+    [SerializeField] private Color typedCorrectlyColor;
+    [SerializeField] private Color incorrectlyTypedColor;
     
+    string typedCorrectlyColorString;
+    string untypedColorString;
+    string incorrectlyTypedColorString;
+    
+    
+    private TextMeshProUGUI text;
+    private IKeyboard keyboard;
+    private string data;
+
+    public Typing(IKeyboard keyboard)
+    {
+        this.keyboard = keyboard;
+    }
+
     private void Awake()
     {
-        _text = this.GameObject().GetComponent<TextMeshProUGUI>();
-        Debug.Log(_text);
-        _keyboard = new Keyboard(1,0.5);
+        text = this.GameObject().GetComponent<TextMeshProUGUI>();
+        text.SetText(typingTarget);
+        keyboard = new Keyboard(0.2,0.05);
+        data = "";
+        
+        typedCorrectlyColorString = typedCorrectlyColor.ToHexString().TrimEnd(new []{'0','0'});
+        untypedColorString = unTypedColor.ToHexString().Trim(new []{'0','0'});
+        incorrectlyTypedColorString = incorrectlyTypedColor.ToHexString().Trim(new []{'0','0'});
+        
     }
     // Update is called once per frame
     void Update()
     {
-        _keyboard.Flush();
-        while (_keyboard.HasKeyPress())
+        keyboard.Flush();
+        while (keyboard.HasKeyPress())
         {
-            String keyData = _keyboard.GetNextKeyPress();
+            String keyData = keyboard.GetNextKeyPress();
             if (keyData == "\b")
             {
                 if (data.Length > 0)
@@ -32,7 +54,90 @@ public class Typing : MonoBehaviour
             {
                 data += keyData;
             }
-            _text.SetText(data);
         }
+
+        StringBuilder result = new StringBuilder("");
+        result.Append($"<color=#{typedCorrectlyColorString}>");
+        bool isCorrectSection = true;
+        bool isWaitingForSpace = false;
+        int timesWaitedForSpace = 0;
+        for (int i = 0; i < data.Length; i++)
+        {
+            char expectedCharacter = typingTarget[i - timesWaitedForSpace];
+            bool isCorrectCharacter = expectedCharacter == data[i];
+
+
+            if (isCorrectSection && !isWaitingForSpace)
+            {
+                if (isCorrectCharacter)
+                {
+                    result.Append(data[i]);
+                }
+                else
+                {
+                    isCorrectSection = false;
+                    result.Append("</color>");
+                    result.Append($"<color=#{incorrectlyTypedColorString}>");
+                    
+                    isWaitingForSpace = ' ' == typingTarget[i];
+                    result.Append(!isWaitingForSpace ? expectedCharacter : data[i]);
+                    if (isWaitingForSpace)
+                    {
+                        timesWaitedForSpace++;
+                    }
+                }
+            }
+            else if (isWaitingForSpace)
+            {
+                if (data[i] == ' ')
+                {
+                    isCorrectSection = true;
+                    result.Append("</color>");
+                    result.Append($"<color=#{typedCorrectlyColorString}>");
+                    result.Append(data[i]);
+                    isWaitingForSpace = false;
+
+                }
+                else
+                {
+                    result.Append(data[i]);
+                    timesWaitedForSpace++;
+                }
+            }
+            else // Incorrect section - Not waiting for space
+            {
+                if (isCorrectCharacter)
+                {
+                    isCorrectSection = true;
+
+                    result.Append("</color>");
+                    result.Append($"<color=#{typedCorrectlyColorString}>");
+                    result.Append(data[i]);
+                }
+                else
+                {
+                    isWaitingForSpace = ' ' == typingTarget[i];
+                    result.Append(!isWaitingForSpace ? expectedCharacter : data[i]);
+                    if (isWaitingForSpace)
+                    {
+                        timesWaitedForSpace++;
+                    }
+                }
+            }
+        }
+
+        result.Append("</color>");
+
+        result.Append($"<color=#{untypedColorString}>");
+        for (int i = data.Length - timesWaitedForSpace; i < typingTarget.Length; i++)
+        {
+            result.Append(typingTarget[i]);
+        }
+        result.Append("</color>");
+
+        text.SetText(result.ToString());
+
+        
+        
     }
 }

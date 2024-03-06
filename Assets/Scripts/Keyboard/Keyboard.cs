@@ -15,52 +15,57 @@ namespace KeyboardEvents
             public bool IsDown { get; set; } = false;
             public double DepressedTime { get; set; } = 0;
         }
-        private readonly Dictionary<KeyCode, KeyData> _keyStates;
+        private readonly Dictionary<KeyCode, KeyData> keyStates;
         
-        private readonly Queue<String> _keysPressed;
-        private readonly IEnumerable<KeyCode> _keyCodes;
+        private readonly Queue<String> keysPressed;
+        private readonly IEnumerable<KeyCode> keyCodes;
 
-        private double _repeatDelay;
-        private double _repeatRate;
+        private readonly double repeatDelay;
+        private readonly double repeatRate;
         public Keyboard(double repeatDelay, double repeatRate)
         {
-            _repeatDelay = repeatDelay;
-            _repeatRate = repeatRate;
+            this.repeatDelay = repeatDelay;
+            this.repeatRate = repeatRate;
             
-            _keyStates = new Dictionary<KeyCode, KeyData>();
-            _keyCodes = Enum.GetValues(typeof(KeyCode)).Cast<KeyCode>();
-            foreach(KeyCode code in _keyCodes)
+            keyStates = new Dictionary<KeyCode, KeyData>();
+            keyCodes = Enum.GetValues(typeof(KeyCode)).Cast<KeyCode>();
+            foreach(KeyCode code in keyCodes)
             {
-                _keyStates[code] = new KeyData();
+                keyStates[code] = new KeyData();
             }
-            _keysPressed = new Queue<String>();
+            keysPressed = new Queue<String>();
         }
 
         
         public bool GetKeyState(KeyCode key)
         {
-            return _keyStates[key].IsDown;
+            return keyStates[key].IsDown;
         }
         
         public void Flush()
         {
             bool shiftDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-            foreach (KeyCode code in _keyCodes)
+            foreach (KeyCode code in keyCodes)
             {
-                _keyStates[code].IsDown = Input.GetKey(code);
+                keyStates[code].IsDown = Input.GetKey(code);
                 if (Input.GetKeyDown(code))
                 {
-                    _keyStates[code].DepressedTime = Time.time;
+                    keyStates[code].DepressedTime = Time.time;
                     EnqueueKey(code, shiftDown);
                 }
 
-                if (_keyStates[code].IsDown)
+                if (keyStates[code].IsDown)
                 {
-                    if (_keyStates[code].DepressedTime - Time.time > _repeatDelay + _repeatRate)
+                    if (Time.time - keyStates[code].DepressedTime > repeatDelay + repeatRate)
                     {
                         EnqueueKey(code,shiftDown);
-                        _keyStates[code].DepressedTime += _repeatRate;
+                        keyStates[code].DepressedTime += repeatRate;
                     }
+                }
+
+                if (Input.GetKeyUp(code))
+                {
+                    keyStates[code].DepressedTime = 0;
                 }
             }
         }
@@ -70,23 +75,23 @@ namespace KeyboardEvents
             String character = KeycodeToString(code);
             if (character is "\b" or "\n")
             {
-                _keysPressed.Enqueue(character);
+                keysPressed.Enqueue(character);
             }
             else if (character != null)
             {
-                _keysPressed.Enqueue(!shiftDown ? character : ApplyShift(character));
+                keysPressed.Enqueue(!shiftDown ? character : ApplyShift(character));
             }
         }
 
         public String GetNextKeyPress()
         {
-            return _keysPressed.Dequeue();
+            return keysPressed.Dequeue();
         }
 
 
         public bool HasKeyPress()
         {
-            return _keysPressed.Count != 0;
+            return keysPressed.Count != 0;
         }
 
 
