@@ -18,10 +18,10 @@ public class CameraController : MonoBehaviour
     private float speed;
     
     /// <summary>
-    /// Initializes the Camera.
+    /// Controls everything to do with the Camera.
     /// </summary>
     /// <param name="target">The target for the Camera to follow.</param>
-    public void Init(GameObject target)
+    public CameraController(GameObject target)
     {
         cam = new GameObject("Main Camera");
         cam.AddComponent<Camera>();
