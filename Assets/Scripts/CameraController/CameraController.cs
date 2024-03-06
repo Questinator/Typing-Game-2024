@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// The speed the Camera moves to the target.
     /// </summary>
-    private float speed;
+    private const float speed = 1.0f;
     
     /// <summary>
     /// The offset from the target for the Camera to go to.
@@ -33,8 +33,6 @@ public class CameraController : MonoBehaviour
         cam.AddComponent<AudioListener>();
 
         this.target = target;
-
-        speed = 1.0f;
     }
     
     /// <summary>
