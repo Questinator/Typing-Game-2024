@@ -9,6 +9,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     public float moveSpeed;
     public float velocity;
+    public float terminalVelocity;
     CharacterController characterController;
 
     // Start is called before the first frame update
@@ -24,13 +25,16 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), moveDirection.y, Input.GetAxis("Vertical"));
-        moveDirection = moveDirection.normalized;
+        //moveDirection = moveDirection.normalized;
         if (!characterController.isGrounded)
         {
-             moveDirection.y -= Time.deltaTime * velocity;
+            if (moveDirection.y > -terminalVelocity)
+            {
+                moveDirection.y -= Time.deltaTime * velocity;
+            }
         } else
         {
-            moveDirection.y = -1;
+            moveDirection.y = -2;
         }
         characterController.Move(moveDirection * Time.deltaTime * moveSpeed);
     }
