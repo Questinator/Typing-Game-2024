@@ -10,6 +10,7 @@ public class PlayerMovementScript : MonoBehaviour
     public float moveSpeed;
     public float velocity;
     public float terminalVelocity;
+    public float jumpHight;
     CharacterController characterController;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             characterController = GetComponent<CharacterController>();
         }
+        
     }
 
     // Update is called once per frame
@@ -34,8 +36,16 @@ public class PlayerMovementScript : MonoBehaviour
             }
         } else
         {
-            moveDirection.y = -2;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                moveDirection.y = jumpHight;
+            }
+            else
+            {
+                moveDirection.y = 0;
+            }
         }
-        characterController.Move(moveDirection * Time.deltaTime * moveSpeed);
+        Vector3 normalized = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
+        characterController.Move(new Vector3(normalized.x, moveDirection.y, normalized.z) * Time.deltaTime * moveSpeed);
     }
 }
