@@ -100,6 +100,21 @@ namespace Items
             item.AddComponent<Item>().Init(id, type, name);
             existingItems.Add(item);
         }
+
+        public void DeleteItem(GameObject item)
+        {
+            for (int i = 0; i < existingItems.Count; i++)
+            {
+                if (existingItems[i] == item)
+                {
+                    GameObject.Destroy(item);
+                    existingItems.Remove(item);
+                    return;
+                }
+            }
+
+            throw new ArgumentException("Cannot find item in list of existing items.");
+        }
         
         /// <summary>
         /// A Possible Item.
