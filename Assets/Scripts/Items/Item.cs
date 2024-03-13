@@ -5,7 +5,6 @@ namespace Items
 {
     public class Item : MonoBehaviour
     {
-        
         /// <summary>
         /// The Item's ID.
         /// </summary>
