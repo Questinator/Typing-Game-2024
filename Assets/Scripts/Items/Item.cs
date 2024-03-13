@@ -9,28 +9,32 @@ namespace Items
         /// <summary>
         /// The Item's ID.
         /// </summary>
-        public readonly int id;
+        public int id;
         
         /// <summary>
-        /// The Item's <see cref="ItemType"/>.
+        /// The Item's ItemType.
         /// </summary>
         private ItemController.ItemType itemType;
         /// <summary>
         /// The Item's name.
         /// </summary>
-        private readonly string name;
+        private string name;
+        
+        /// <summary>
+        /// The ItemController.
+        /// </summary>
+        private ItemController controller;
         
         /// <summary>
         /// Stores methods and values related to Items.
         /// </summary>
         /// <param name="id">The Item's ID.</param>
-        public Item(int id)
+        public void Init(int id, ItemController.ItemType itemType, string name)
         {
             this.id = id;
-            
-            // Set ItemType based on ID
-            
-            // Set name based on ID
+            this.itemType = itemType;
+            this.name = name;
+            this.controller = ItemController.GlobalController;
         }
 
         public ItemController.ItemType GetItemType()

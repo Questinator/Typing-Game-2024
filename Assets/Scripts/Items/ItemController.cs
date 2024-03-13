@@ -16,6 +16,20 @@ namespace Items
             Material,
             Currency
         }
+
+        internal static ItemController controllerReference;
+        public static ItemController GlobalController
+        {
+            get
+            {
+                if (controllerReference==null)
+                {
+                    controllerReference = new ItemController();
+                }
+
+                return controllerReference;
+            }
+        }
         
         /// <summary>
         /// A List of Items that actually exist in the world.
@@ -31,33 +45,76 @@ namespace Items
         /// </summary>
         /// <param name="id">The ID of the item to get the <see cref="ItemType"/> of.</param>
         /// <returns>The <see cref="ItemType"/> of the Item with the given ID.</returns>
-        public static ItemType GetItemTypeFromID(int id)
+        /// <exception cref="ArgumentException">There is no item with the given ID.</exception>
+        public ItemType GetItemTypeFromID(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < possibleItems.Count; i++)
+            {
+                if (possibleItems[i].id == id) return possibleItems[i].type;
+            }
+
+            throw new ArgumentException("There is no item with id " + id);
+        }
+        
+        /// <summary>
+        /// Gets the name of the Item with the given ID.
+        /// </summary>
+        /// <param name="id">The ID of the item to get the name of.</param>
+        /// <returns>The name of the item with the given ID.</returns>
+        /// <exception cref="ArgumentException">There is no item with the given ID.</exception>
+        public string GetNameFromID(int id)
+        {
+            for (int i = 0; i < possibleItems.Count; i++)
+            {
+                if (possibleItems[i].id == id) return possibleItems[i].name;
+            }
+
+            throw new ArgumentException("There is no item with id " + id);
         }
         
         /// <summary>
         /// Creates a new possible Item.
         /// </summary>
-        /// <param name="item">The new possible Item.</param>
-        public void CreateItem(int id, string name)
+        /// <param name="id">The ID of the new Possible Item.</param>
+        /// <param name="name">The name of the new Possible Item.</param>
+        /// <param name="type">The <see cref="ItemType"/> of the new Possible Item.</param>
+        public void CreateItem(int id, string name, ItemType type)
         {
             for (int i = 0; i < possibleItems.Count; i++)
             {
                 if (possibleItems[i].id == id || possibleItems[i].name == name) throw new ArgumentException();
             }
-            possibleItems.Add(new PossibleItem(id, name));
+            possibleItems.Add(new PossibleItem(id, name, type));
         }
+        
+        /// <summary>
+        /// Instantiates an Item into the world.
+        /// </summary>
+        /// <param name="id"></param>
+        public void InstantiateItem(int id)
+        {
+            string name = GetNameFromID(id);
+            ItemType type = GetItemTypeFromID(id);
 
+            GameObject item = new GameObject();
+            item.AddComponent<Item>().Init(id, type, name);
+            existingItems.Add(item);
+        }
+        
+        /// <summary>
+        /// A Possible Item.
+        /// </summary>
         private struct PossibleItem
         {
             public readonly int id;
             public readonly string name;
+            public readonly ItemType type;
 
-            public PossibleItem(int id, string name)
+            public PossibleItem(int id, string name, ItemType type)
             {
                 this.id = id;
                 this.name = name;
+                this.type = type;
             }
         }
     }
