@@ -18,7 +18,7 @@ namespace Items
         }
 
         internal static ItemController controllerReference;
-        public static ItemController GlobalController
+        public static ItemController GlobalItemController
         {
             get
             {
