@@ -16,20 +16,6 @@ namespace Items
             Material,
             Currency
         }
-
-        internal static ItemController controllerReference;
-        public static ItemController GlobalItemController
-        {
-            get
-            {
-                if (controllerReference==null)
-                {
-                    controllerReference = new ItemController();
-                }
-
-                return controllerReference;
-            }
-        }
         
         /// <summary>
         /// A List of Items that actually exist in the world.

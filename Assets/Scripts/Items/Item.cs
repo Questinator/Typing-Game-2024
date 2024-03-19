@@ -20,11 +20,6 @@ namespace Items
         private string name;
         
         /// <summary>
-        /// The ItemController.
-        /// </summary>
-        private ItemController controller;
-        
-        /// <summary>
         /// Stores methods and values related to Items.
         /// </summary>
         /// <param name="id">The Item's ID.</param>
@@ -33,7 +28,6 @@ namespace Items
             this.id = id;
             this.itemType = itemType;
             this.name = name;
-            this.controller = ItemController.GlobalItemController;
         }
 
         public ItemController.ItemType GetItemType()
