@@ -9,12 +9,31 @@ namespace Keyboard
 {
     public class Typing : MonoBehaviour
     {
+        /// <summary>
+        /// Sentence to type
+        /// </summary>
         [SerializeField] private string typingTarget;
+        /// <summary>
+        /// Color of the text if it hasn't been typed
+        /// </summary>
         [SerializeField] private Color unTypedColor;
+        /// <summary>
+        /// Color of the text
+        /// </summary>
         [SerializeField] private Color typedCorrectlyColor;
+        /// <summary>
+        /// Color of the text if it has been typed wrong
+        /// </summary>
         [SerializeField] private Color incorrectlyTypedColor;
+        /// <summary>
+        /// Color of the cursor
+        /// </summary>
         [SerializeField] private Color cursorColor;
-
+        /// <summary>
+        /// Charachter for the cursor
+        /// </summary>
+        [SerializeField] private string cursorCharachter;
+        
         private float lastCursorBlink;
         
         string typedCorrectlyColorString;
@@ -34,14 +53,14 @@ namespace Keyboard
         
         
         private int correctKeyPressCount;
+        /// <summary>
+        /// Is the typing thing active?
+        /// </summary>
         public bool IsRunning {  get; private set; }
-
-
-        public Typing(IKeyboard keyboard)
-        {
-            this.keyboard = keyboard;
-        }
-
+        
+        /// <summary>
+        /// Setup
+        /// </summary>
         private void Awake()
         {
             startTime = -1;
@@ -56,7 +75,6 @@ namespace Keyboard
             typedCorrectlyColorString = Util.TMPHex(typedCorrectlyColor);
             untypedColorString = Util.TMPHex(unTypedColor);
             incorrectlyTypedColorString = Util.TMPHex(incorrectlyTypedColor);
-        
         }
 
         private void Start()
@@ -67,27 +85,33 @@ namespace Keyboard
         // Update is called once per frame
         void Update()
         {
+            // Update the keyboard events
             keyboard.Flush();
+            // Look through all of the keypresses
             while (keyboard.HasKeyPress())
             {
                 String keyData = keyboard.GetNextKeyPress();
                 if (keyData == "\b")
                 {
+                    // Delete a character
                     if (data.Length > 0)
                         data = data.Remove(data.Length - 1);
                 }
                 else
                 {
+                    // Add keydata to the typed words
                     data += keyData;
+                    // Start timing if we aren't yet
                     if (startTime <= -1 && delayStartTiming)
                     {
                         StartTiming();
                     }
                 }
+                // Calculate what we need to show
                 cachedText = CalculateTextData();
             }
 
-
+            // Render the text
             RenderTextData();
 
 
@@ -95,12 +119,13 @@ namespace Keyboard
 
         private void RenderTextData()
         {
-            text.SetText(cachedText.Replace("\u1111",$"<color=#{Util.TMPHex(cursorColor)}>|</color>"));
+            text.SetText(cachedText.Replace("\u1111",$"<color=#{Util.TMPHex(cursorColor)}>{cursorCharachter}</color>"));
         }
 
 
         private string CalculateTextData()
         {
+            // Create the result
             StringBuilder result = new StringBuilder("");
             result.Append($"<color=#{typedCorrectlyColorString}>");
             bool isCorrectSection = true;
@@ -212,7 +237,7 @@ namespace Keyboard
         {
             result.Append(typedCharacter);
         }
-
+        
         private void SwitchToCorrectChunk(StringBuilder result, char typedCharacter)
         {
             result.Append("</color>");
@@ -221,25 +246,34 @@ namespace Keyboard
         }
         
         
-        
+        /// <summary>
+        /// Start the timer
+        /// </summary>
         public void StartTiming()
         {
             startTime = Time.time;
             IsRunning = true;
         }
-
+        /// <summary>
+        /// Stop the timer
+        /// </summary>
         public void StopTiming()
         {
             stopTime = Time.time;
             IsRunning = false;
         }
-
+        /// <summary>
+        /// Start timing once the user presses a key
+        /// </summary>
         public void StartTimingOnFirstKeyPress()
         {
             delayStartTiming = true;
         }
         
-        
+        /// <summary>
+        /// Get the raw wpm typed of all characters since typing started
+        /// </summary>
+        /// <returns></returns>
         public double GetRawWpm()
         {
             if (startTime <= -1)
@@ -255,17 +289,26 @@ namespace Keyboard
                 return (data.Length / 5.0) / ((Time.time - startTime) / 60.0);
             }
         }
-
+        /// <summary>
+        /// Number of characters in the target string
+        /// </summary>
+        /// <returns></returns>
         public int GetTotalCharacters()
         {
             return typingTarget.Length;
         }
-
+        /// <summary>
+        /// Number of chacters typed
+        /// </summary>
+        /// <returns></returns>
         public int GetTotalTypedCharacters()
         {
             return data.Length;
         }
-
+        /// <summary>
+        /// Gets the perventage of the text that is correctly typed
+        /// </summary>
+        /// <returns></returns>
         public double GetAccuracy()
         {
             if (data.Length == 0)
