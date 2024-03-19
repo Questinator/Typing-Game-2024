@@ -19,13 +19,4 @@ public class GameController : MonoBehaviour
         cam.AddComponent<AudioListener>();
         cam.AddComponent<CameraController>().Init(followObj);
     }
-
-    /// <summary>
-    /// Switches to the right scene to start the game
-    /// </summary>
-    public void PlayGame()
-    {
-        Debug.Log("Playing the game!");
-        // TODO: Write code that will start the right scene
-    }
 }
