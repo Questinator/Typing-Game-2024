@@ -2,20 +2,16 @@ using System;
 using UnityEngine;
 public class CameraController : MonoBehaviour
 {
-    /// <summary>
-    /// The actual Camera object.
-    /// </summary>
-    private GameObject cam;
     
     /// <summary>
     /// The target that the Camera follows.
     /// </summary>
-    private GameObject target;
-    
+    private Transform target;
+
     /// <summary>
     /// The speed the Camera moves to the target.
     /// </summary>
-    public float speed = 1.0f;
+    public float speed = 10f;
     
     /// <summary>
     /// The offset from the target for the Camera to go to.
@@ -25,27 +21,34 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// Controls everything to do with the Camera.
     /// </summary>
-    /// <param name="target">The target for the Camera to follow.</param>
-    public CameraController(GameObject target)
+    /// <param name="target">The <see cref="GameObject"/> for the Camera to follow.</param>
+    /// <param name="speed">The speed that this Camera follows at.</param>
+    public void Init(Transform target, float speed)
     {
-        cam = new GameObject("Main Camera");
-        cam.AddComponent<Camera>();
-        cam.AddComponent<AudioListener>();
-
+        this.target = target;
+        this.speed = speed;
+    }
+    
+    /// <summary>
+    /// Controls everything to do with the Camera.
+    /// </summary>
+    /// <param name="target">The <see cref="GameObject"/> for the Camera to follow.</param>
+    public void Init(Transform target)
+    {
         this.target = target;
     }
     
     /// <summary>
-    /// Changes the who the Camera is currently following.
+    /// Changes the what this Camera is currently following.
     /// </summary>
-    /// <param name="target">The target for the Camera to follow.</param>
-    public void SetTarget(GameObject target)
+    /// <param name="target">The <see cref="GameObject"/> for this Camera to follow.</param>
+    public void SetTarget(Transform target)
     {
         this.target = target;
     }
 
     /// <summary>
-    /// Changes the offset from the target for the Camera to follow.
+    /// Changes the offset away from <see cref="target"/> that this Camera follows at.
     /// </summary>
     /// <param name="offset">The new offset.</param>
     public void SetOffset(Vector3 offset)
@@ -53,14 +56,23 @@ public class CameraController : MonoBehaviour
         this.offset = offset;
     }
     
+    /// <summary>
+    /// Changes the speed that this Camera follows <see cref="target"/> at.
+    /// </summary>
+    /// <param name="speed">The new speed value.</param>
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+    
     public void LateUpdate()
     {
         Vector3 pos = this.transform.position;
-        Vector3 targetPos = target.transform.position;
+        Vector3 targetPos = target.position;
         Vector3 moveTo = new Vector3(
-            Mathf.Lerp(pos.x, targetPos.x + offset.x, speed), 
-            Mathf.Lerp(pos.y, targetPos.y + offset.y, speed), 
-            Mathf.Lerp(pos.z, targetPos.z + offset.z, speed)
+            Mathf.Lerp(pos.x, targetPos.x + offset.x, speed * Time.deltaTime), 
+            Mathf.Lerp(pos.y, targetPos.y + offset.y, speed * Time.deltaTime), 
+            Mathf.Lerp(pos.z, targetPos.z + offset.z, speed * Time.deltaTime)
         );
         this.transform.position = moveTo;
     }
