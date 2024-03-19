@@ -33,7 +33,7 @@ namespace Items
             this.id = id;
             this.itemType = itemType;
             this.name = name;
-            this.controller = ItemController.GlobalController;
+            this.controller = ItemController.GlobalItemController;
         }
 
         public ItemController.ItemType GetItemType()
