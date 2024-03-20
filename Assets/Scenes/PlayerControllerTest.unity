@@ -315,12 +315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c893482f09a6a14694021e96c6a29e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDirection: {x: 0, y: 0, z: 0}
-  moveSpeed: 5
-  velocity: 8
-  terminalVelocity: 30
-  jumpHight: 5
-  rotationSpeed: 1000
+  _moveSpeed: 5
+  gravityMultiplyer: 3
+  smoothTime: 0.15
 --- !u!136 &1329180005
 CapsuleCollider:
   m_ObjectHideFlags: 0
