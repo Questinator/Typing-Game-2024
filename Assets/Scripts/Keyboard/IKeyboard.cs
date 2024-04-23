@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace KeyboardEvents
+namespace Keyboard
 {
     public interface IKeyboard
     {

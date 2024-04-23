@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using KeyboardEvents;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -68,7 +67,7 @@ namespace Keyboard
             
             text = this.GameObject().GetComponent<TextMeshProUGUI>();
             text.SetText(typingTarget);
-            keyboard = new KeyboardEvents.Keyboard(0.2,0.05);
+            keyboard = new Keyboard(0.2,0.05);
             data = "";
             correctKeyPressCount = 0;
         
@@ -113,8 +112,6 @@ namespace Keyboard
 
             // Render the text
             RenderTextData();
-
-
         }
 
         private void RenderTextData()

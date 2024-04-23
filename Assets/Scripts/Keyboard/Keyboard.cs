@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace KeyboardEvents
+namespace Keyboard
 {
-
-    
-    
     public class Keyboard : IKeyboard
     {
         private class KeyData
