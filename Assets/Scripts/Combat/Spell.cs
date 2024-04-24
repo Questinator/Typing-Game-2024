@@ -27,7 +27,7 @@ public class Spell : ScriptableObject
     public string SpellName => spellName;
     
     /// <summary>
-    /// What the player has to type in to cast this spell.
+    /// What the player has to type to cast this spell.
     /// </summary>
     public string Incantation => incantation;
     
@@ -42,12 +42,12 @@ public class Spell : ScriptableObject
     public float MinAccuracy => minAccuracy;
     
     /// <summary>
-    /// The threshhold of speed the player has to reach to do a critical hit.
+    /// The threshold of speed the player has to reach to do a critical hit.
     /// </summary>
     public float CritSpeedThreshhold => critSpeedThreshhold;
     
     /// <summary>
-    /// The threshhold of accuracy the player has to reach to do a critical hit.
+    /// The threshold of accuracy the player has to reach to do a critical hit.
     /// </summary>
     public float CritAccuracyThreshold => critAccuracyThreshold;
     
