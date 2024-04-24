@@ -17,6 +17,8 @@ public class Spell : ScriptableObject
     private float critSpeedThreshhold;
     [SerializeField]
     private float critAccuracyThreshold;
+    [SerializeField] 
+    private float critMultiplier = 2f;
     
     [SerializeField]
     private int damage;
@@ -50,6 +52,11 @@ public class Spell : ScriptableObject
     /// The threshold of accuracy the player has to reach to do a critical hit.
     /// </summary>
     public float CritAccuracyThreshold => critAccuracyThreshold;
+    
+    /// <summary>
+    /// How much a crit increases the damage (2x by default).
+    /// </summary>
+    public float CritMultiplier => critMultiplier;
     
     /// <summary>
     /// The damage this spell does.
