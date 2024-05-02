@@ -13,11 +13,11 @@ public class PlayerMovementScript : MonoBehaviour
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
-    public float _moveSpeed;
+    [SerializeField] private float _moveSpeed;
 
     // Gravity variables
-    private float _gravity = -9.81f;
-    public float gravityMultiplyer = 3.0f;
+    [SerializeField] private float _gravity = -9.81f;
+    [SerializeField] private float gravityMultiplier = 3.0f;
     private float _velocity;
     private float _terminalVelocity = -30;
 
@@ -36,17 +36,16 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        _input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         _direction = new Vector3(_input.x, 0f, _input.y);
 
-        applyGravity();
-        applyRotation();
+        ApplyGravity();
+        ApplyRotation();
 
         _characterController.Move(_direction * _moveSpeed * Time.deltaTime);
     }
 
-    private void applyGravity()
+    private void ApplyGravity()
     {
         if (_characterController.isGrounded && _velocity < 0.0f)
         {
@@ -56,12 +55,12 @@ public class PlayerMovementScript : MonoBehaviour
         {
             if (_velocity > _terminalVelocity)
             {
-                _velocity += _gravity * gravityMultiplyer * Time.deltaTime;
+                _velocity += _gravity * gravityMultiplier * Time.deltaTime;
             }
         }
         _direction.y = _velocity;
     }
-    private void applyRotation()
+    private void ApplyRotation()
     {
         if (_input.sqrMagnitude != 0)
         {
