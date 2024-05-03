@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a616a29582dfb4aac971ffec4c0f0b, type: 3}
   m_Name: shimiyay shimiyay shimiyay shimiyaaa falalalaa
   m_EditorClassIdentifier: 
-  spellName: 
-  incantation: 
-  minSpeed: 0
-  minAccuracy: 0
-  critSpeedThreshhold: 0
-  critAccuracyThreshold: 0
-  critMultiplier: 2
-  damage: 0
+  spellName: shimiyay shimiyay shimiyay shimiyaaa falalalaa
+  incantation: shimiyay shimiyay shimiyay shimiyaaa falalalaa
+  minSpeed: 100
+  minAccuracy: 99
+  critSpeedThreshhold: 200
+  critAccuracyThreshold: 100
+  critMultiplier: 100
+  damage: 80
