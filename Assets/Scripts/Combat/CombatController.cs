@@ -1,18 +1,27 @@
 using System;
+using System.Collections.Generic;
 
 public class CombatController
 {
     private Random rand;
     
-    private CombatEntity p1;
-    private CombatEntity p2;
-
+    /// <summary>
+    /// All entities in this combat encounter.
+    /// </summary>
+    private List<CombatEntity> entities;
+    /// <summary>
+    /// All entities in this combat encounter.
+    /// </summary>
+    public List<CombatEntity> Entities => entities;
+    
+    /// <summary>
+    /// Whose turn it currently is. (This is 0 based)
+    /// </summary>
     private int turn;
 
-    public CombatController(CombatEntity p1, CombatEntity p2)
+    public CombatController(List<CombatEntity> entities)
     {
-        this.p1 = p1;
-        this.p2 = p2;
+        this.entities = entities;
 
         turn = 0;
         rand = new Random();
@@ -54,8 +63,8 @@ public class CombatController
     /// <param name="spell">Which spell to cast.</param>
     /// <param name="accuracy">The accuracy of the typing.</param>
     /// <param name="speed">The speed of the typing.</param>
-    /// <returns>The Combat's Result.</returns>
-    public CombatResult CastSpell(Spell spell, int accuracy, int speed)
+    /// <returns>The result of combat.</returns>
+    private CombatResult CastSpell(Spell spell, int accuracy, int speed)
     {
         CombatEntity entity = GetCurrentEntity();
         SwitchTurn();
@@ -79,7 +88,7 @@ public class CombatController
     /// <summary>
     /// Return the result of combat from an AI.
     /// </summary>
-    /// <returns>The result of combat from the AI.</returns>
+    /// <returns>The result of combat.</returns>
     public CombatResult DoAITurn()
     {
         CombatEntity entity = GetCurrentEntity();
@@ -101,7 +110,13 @@ public class CombatController
         throw new ArgumentException("something isn't working right....");
     }
     
-    
+    /// <summary>
+    /// Does the player's turn.
+    /// </summary>
+    /// <param name="spell">The spell the player is casting.</param>
+    /// <param name="accuracy">The accuracy the player typed the incantation.</param>
+    /// <param name="speed">The speed the player typed the incantation.</param>
+    /// <returns>The result of combat.</returns>
     public CombatResult DoPlayerTurn(Spell spell, int accuracy, int speed)
     {
         return CastSpell(spell, accuracy, speed);
@@ -113,14 +128,7 @@ public class CombatController
     /// <returns>The CombatEntity whose turn it is.</returns>
     private CombatEntity GetCurrentEntity()
     {
-        if (turn == 0)
-        {
-            return p1;
-        }
-        else
-        {
-            return p2;
-        }
+        return entities[turn];
     }
     
     /// <summary>
@@ -128,17 +136,12 @@ public class CombatController
     /// </summary>
     private void SwitchTurn()
     {
-        if (turn == 0)
-        {
-            turn = 1;
-        }
-        else
+        turn++;
+        if (turn >= entities.Count)
         {
             turn = 0;
         }
     }
-    public int p1Health => p1.Health;
-    public int p2Health => p2.Health;
     
     /// <summary>
     /// The result of combat.
