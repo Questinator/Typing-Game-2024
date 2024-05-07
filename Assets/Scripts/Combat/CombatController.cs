@@ -23,7 +23,7 @@ public class CombatController
     /// </summary>
     public Spell GetRandomSpell()
     {
-        CombatEntity entity = getCurrentEntity();
+        CombatEntity entity = GetCurrentEntity();
         return entity.Spells[rand.Next(0, entity.Spells.Length)];
     }
 
@@ -33,7 +33,7 @@ public class CombatController
     /// <param name="spellNum">The position on the attacker's <c>spells</c> array for the spell.</param>
     public Spell GetSpell(int spellNum)
     {
-        CombatEntity entity = getCurrentEntity();
+        CombatEntity entity = GetCurrentEntity();
         return entity.Spells[spellNum];
     }
 
@@ -57,8 +57,8 @@ public class CombatController
     /// <returns>The Combat's Result.</returns>
     public CombatResult CastSpell(Spell spell, int accuracy, int speed)
     {
-        CombatEntity entity = getCurrentEntity();
-        switchTurn();
+        CombatEntity entity = GetCurrentEntity();
+        SwitchTurn();
         int damage = spell.Damage;
         if (accuracy >= spell.MinAccuracy && speed >= spell.MinSpeed)
         {
@@ -80,9 +80,9 @@ public class CombatController
     /// Return the result of combat from an AI.
     /// </summary>
     /// <returns>The result of combat from the AI.</returns>
-    public CombatResult doAITurn()
+    public CombatResult DoAITurn()
     {
-        CombatEntity entity = getCurrentEntity();
+        CombatEntity entity = GetCurrentEntity();
         Spell spell = entity.Spells[rand.Next(0, entity.Spells.Length)];
         if (entity.Level <= 3)
         {
@@ -102,7 +102,7 @@ public class CombatController
     }
     
     
-    public CombatResult doPlayerTurn(Spell spell, int accuracy, int speed)
+    public CombatResult DoPlayerTurn(Spell spell, int accuracy, int speed)
     {
         return CastSpell(spell, accuracy, speed);
     }
@@ -111,7 +111,7 @@ public class CombatController
     /// Gets the CombatEntity whose turn it is.
     /// </summary>
     /// <returns>The CombatEntity whose turn it is.</returns>
-    private CombatEntity getCurrentEntity()
+    private CombatEntity GetCurrentEntity()
     {
         if (turn == 0)
         {
@@ -126,7 +126,7 @@ public class CombatController
     /// <summary>
     /// Switches the current turn.
     /// </summary>
-    private void switchTurn()
+    private void SwitchTurn()
     {
         if (turn == 0)
         {
