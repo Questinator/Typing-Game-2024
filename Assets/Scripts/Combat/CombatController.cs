@@ -57,19 +57,23 @@ public class CombatController
     /// <returns>The Combat's Result.</returns>
     public CombatResult CastSpell(Spell spell, int accuracy, int speed)
     {
+        CombatEntity entity = getCurrentEntity();
         switchTurn();
         int damage = spell.Damage;
         if (accuracy >= spell.MinAccuracy && speed >= spell.MinSpeed)
         {
             if (accuracy >= spell.CritAccuracyThreshold && speed >= spell.CritSpeedThreshhold)
             {
-                return new CombatResult(spell, (int)(damage * spell.CritMultiplier));
+                damage = (int)(damage * spell.CritMultiplier);
             }
-
-            return new CombatResult(spell, damage);
         }
-
-        return new CombatResult(spell, 0);
+        else
+        {
+            damage = 0;
+        }
+        entity.Damage(damage);
+        
+        return new CombatResult(spell, damage);
     }
     
     /// <summary>
