@@ -3,8 +3,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CombatEntity : ScriptableObject
 {
+    [SerializeField]
     private int health;
+    [SerializeField]
     private int level;
+    [SerializeField]
     private Spell[] spells;
     
     /// <summary>
