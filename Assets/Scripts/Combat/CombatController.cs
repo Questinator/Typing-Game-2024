@@ -64,7 +64,7 @@ public class CombatController
     /// <param name="accuracy">The accuracy of the typing.</param>
     /// <param name="speed">The speed of the typing.</param>
     /// <returns>The result of combat.</returns>
-    private CombatResult CastSpell(Spell spell, int accuracy, int speed)
+    private SpellResult CastSpell(Spell spell, int accuracy, int speed)
     {
         CombatEntity entity = GetCurrentEntity();
         SwitchTurn();
@@ -82,14 +82,14 @@ public class CombatController
         }
         entity.Damage(damage);
         
-        return new CombatResult(spell, damage);
+        return new SpellResult(spell, damage);
     }
     
     /// <summary>
     /// Return the result of combat from an AI.
     /// </summary>
     /// <returns>The result of combat.</returns>
-    public CombatResult DoAITurn()
+    public SpellResult DoAITurn()
     {
         CombatEntity entity = GetCurrentEntity();
         Spell spell = entity.Spells[rand.Next(0, entity.Spells.Length)];
@@ -117,7 +117,7 @@ public class CombatController
     /// <param name="accuracy">The accuracy the player typed the incantation.</param>
     /// <param name="speed">The speed the player typed the incantation.</param>
     /// <returns>The result of combat.</returns>
-    public CombatResult DoPlayerTurn(Spell spell, int accuracy, int speed)
+    public SpellResult DoPlayerTurn(Spell spell, int accuracy, int speed)
     {
         return CastSpell(spell, accuracy, speed);
     }
@@ -146,12 +146,12 @@ public class CombatController
     /// <summary>
     /// The result of combat.
     /// </summary>
-    public struct CombatResult
+    public struct SpellResult
     {
         public Spell spell;
         public int damage;
 
-        public CombatResult(Spell spell, int damage)
+        public SpellResult(Spell spell, int damage)
         {
             this.spell = spell;
             this.damage = damage;

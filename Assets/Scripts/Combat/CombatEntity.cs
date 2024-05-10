@@ -33,4 +33,12 @@ public class CombatEntity : ScriptableObject
     {
         health -= damage;
     }
+    /// <summary>
+    /// Creates a copy of this scriptable object, if you have an asset
+    /// </summary>
+    /// <returns></returns>
+    public CombatEntity Clone()
+    {
+        return Instantiate(this);
+    }
 }
