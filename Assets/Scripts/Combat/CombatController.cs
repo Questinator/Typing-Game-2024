@@ -67,7 +67,6 @@ public class CombatController
     private SpellResult CastSpell(Spell spell, int accuracy, int speed)
     {
         CombatEntity entity = GetCurrentEntity();
-        SwitchTurn();
         int damage = spell.Damage;
         if (accuracy >= spell.MinAccuracy && speed >= spell.MinSpeed)
         {
@@ -80,8 +79,8 @@ public class CombatController
         {
             damage = 0;
         }
-        entity.Damage(damage);
-        
+        SwitchTurn();
+        GetCurrentEntity().Damage(damage);
         return new SpellResult(spell, damage);
     }
     

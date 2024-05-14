@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c075fb97441fbdb4399efc7d2d774ee4, type: 3}
-  m_Name: Player
+  m_Name: Enemy
   m_EditorClassIdentifier: 
   health: 20
   maxHealth: 20
   level: 5
   spells:
   - {fileID: 11400000, guid: 31762d7577118a845aadeb292c1466b6, type: 2}
-  - {fileID: 11400000, guid: 644fffcdc276c7b4e981c64d9b501e7d, type: 2}
   - {fileID: 11400000, guid: 4116de883fb89f44794342862655bfd1, type: 2}

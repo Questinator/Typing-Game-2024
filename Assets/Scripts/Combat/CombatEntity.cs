@@ -6,6 +6,8 @@ public class CombatEntity : ScriptableObject
     [SerializeField]
     private int health;
     [SerializeField]
+    private int maxHealth;
+    [SerializeField]
     private int level;
     [SerializeField]
     private Spell[] spells;
@@ -14,6 +16,11 @@ public class CombatEntity : ScriptableObject
     /// The amount of HP this character has left
     /// </summary>
     public int Health => health;
+    
+    /// <summary>
+    /// The max health for this charachter
+    /// </summary>
+    public int MaxHealth => maxHealth;
     
     /// <summary>
     /// The level of this entity.
