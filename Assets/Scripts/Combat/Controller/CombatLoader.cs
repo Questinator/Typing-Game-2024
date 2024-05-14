@@ -129,7 +129,9 @@ namespace Combat.Controller
             this.playerObj = playerObj;
             this.enemyObj = enemyObj;
             this.player = player.Clone();
+            this.player.name = player.name;
             this.enemy = enemy.Clone();
+            this.enemy.name = enemy.name;
         }
 
         public GameObject PlayerObj => playerObj;

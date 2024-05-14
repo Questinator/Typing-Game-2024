@@ -71,12 +71,12 @@ public class CombatUI : MonoBehaviour
         yield return new WaitForSeconds(2);
         CombatController.SpellResult result = controller.DoPlayerTurn(spell, accuracy, speed);
         logArea.SetText(result.damage > 0
-            ? $"You cast {result.spell} and it did {result.damage}"
+            ? $"You cast {result.spell} and it did {result.damage} damage"
             : $"You failed to cast {result.spell}");
         yield return new WaitForSeconds(2);
         result = controller.DoAITurn();
         logArea.SetText(result.damage > 0
-            ? $"{loader.Info.Enemy.name} cast {result.spell} and it did {result.damage}"
+            ? $"{loader.Info.Enemy.name} cast {result.spell} and it did {result.damage} damage"
             : $"{loader.Info.Enemy.name} failed to cast {result.spell}");
         optionsSection.gameObject.SetActive(true);
     }
