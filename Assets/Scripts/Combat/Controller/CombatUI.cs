@@ -73,11 +73,28 @@ public class CombatUI : MonoBehaviour
         logArea.SetText(result.damage > 0
             ? $"You cast {result.spell} and it did {result.damage} damage"
             : $"You failed to cast {result.spell}");
+        CheckIfEnding();
         yield return new WaitForSeconds(2);
         result = controller.DoAITurn();
         logArea.SetText(result.damage > 0
             ? $"{loader.Info.Enemy.name} cast {result.spell} and it did {result.damage} damage"
             : $"{loader.Info.Enemy.name} failed to cast {result.spell}");
         optionsSection.gameObject.SetActive(true);
+        CheckIfEnding();
+    }
+
+    private void CheckIfEnding()
+    {
+        if (loader.Info.Player.Health <= 0)
+        {
+            CombatLoader.Instance.Complete(new CombatResult(false, false, loader.Info.Player.Health,
+                loader.Info.Enemy.Health));
+        }
+        if (loader.Info.Enemy.Health <= 0)
+        {
+            CombatLoader.Instance.Complete(new CombatResult(true, false, loader.Info.Player.Health,
+                loader.Info.Enemy.Health));
+        }
+        
     }
 }
