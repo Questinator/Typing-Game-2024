@@ -337,7 +337,7 @@ namespace Keyboard
             return data.Length;
         }
         /// <summary>
-        /// Gets the perventage of the text that is correctly typed
+        /// Gets the percentage of the text that is correctly typed
         /// </summary>
         /// <returns></returns>
         public double GetAccuracy()
@@ -345,6 +345,13 @@ namespace Keyboard
             if (data.Length == 0)
                 return 1;
             return correctKeyPressCount / (double)data.Length;
+        }
+
+        public double GetTotalAccuracy()
+        {
+            if (data.Length == 0)
+                return 0;
+            return correctKeyPressCount / (double)typingTarget.Length;
         }
         
         public bool IsEnterPressed()

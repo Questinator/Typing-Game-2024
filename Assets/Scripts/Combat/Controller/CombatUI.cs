@@ -56,6 +56,7 @@ public class CombatUI : MonoBehaviour
                 typingBox.SetIgnoreEnter(true);
                 isTyping = true;
                 spellBeingCast = spell;
+                logArea.gameObject.SetActive(false);
             });
         }
         Instantiate(loader.Info.PlayerObj, playerPosition);
@@ -87,8 +88,9 @@ public class CombatUI : MonoBehaviour
             {
                 isTyping = false;
                 typingBox.StopTiming();
-            
-                StartCoroutine(DoAttack(spellBeingCast, (int)Math.Round(100 * typingBox.GetAccuracy()), (int)Math.Round(typingBox.GetRawWpm())));
+                logArea.gameObject.SetActive(true);
+                typingArea.gameObject.SetActive(false);
+                StartCoroutine(DoAttack(spellBeingCast, (int)Math.Round(100 * typingBox.GetTotalAccuracy()), (int)Math.Round(typingBox.GetRawWpm())));
             }
         }
     }
@@ -106,7 +108,7 @@ public class CombatUI : MonoBehaviour
         logArea.SetText(result.damage > 0
             ? $"{loader.Info.Enemy.name} cast {result.spell} and it did {result.damage} damage"
             : $"{loader.Info.Enemy.name} failed to cast {result.spell}");
-        CheckIfEnding();
+        if (CheckIfEnding()) yield break;
         optionsSection.gameObject.SetActive(true);
         typingArea.gameObject.SetActive(false);
         typingBox.Reset();
