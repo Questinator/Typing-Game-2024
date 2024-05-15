@@ -63,8 +63,9 @@ public class CombatController
     /// <param name="spell">Which spell to cast.</param>
     /// <param name="accuracy">The accuracy of the typing.</param>
     /// <param name="speed">The speed of the typing.</param>
+    /// <param naame="target">The target of the spell.</param>
     /// <returns>The result of combat.</returns>
-    private SpellResult CastSpell(Spell spell, int accuracy, int speed)
+    private SpellResult CastSpell(Spell spell, int accuracy, int speed, CombatEntity target)
     {
         CombatEntity entity = GetCurrentEntity();
         int damage = spell.Damage;
@@ -79,8 +80,35 @@ public class CombatController
         {
             damage = 0;
         }
+        target.Damage(damage);
         SwitchTurn();
-        GetCurrentEntity().Damage(damage);
+        return new SpellResult(spell, damage);
+    }
+    
+    /// <summary>
+    /// Casts a spell. (debug method, for only 2 CombatEntities)
+    /// </summary>
+    /// <param name="spell">Which spell to cast.</param>
+    /// <param name="accuracy">The accuracy of the typing.</param>
+    /// <param name="speed">The speed of the typing.</param>
+    /// <returns>The result of combat.</returns>
+    private SpellResult CastSpell(Spell spell, int accuracy, int speed, CombatEntity target)
+    {
+        CombatEntity entity = GetCurrentEntity();
+        int damage = spell.Damage;
+        if (accuracy >= spell.MinAccuracy && speed >= spell.MinSpeed)
+        {
+            if (accuracy >= spell.CritAccuracyThreshold && speed >= spell.CritSpeedThreshhold)
+            {
+                damage = (int)(damage * spell.CritMultiplier);
+            }
+        }
+        else
+        {
+            damage = 0;
+        }
+        target.Damage(damage);
+        SwitchTurn();
         return new SpellResult(spell, damage);
     }
     
