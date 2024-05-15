@@ -92,7 +92,7 @@ public class CombatController
     /// <param name="accuracy">The accuracy of the typing.</param>
     /// <param name="speed">The speed of the typing.</param>
     /// <returns>The result of combat.</returns>
-    private SpellResult CastSpell(Spell spell, int accuracy, int speed, CombatEntity target)
+    private SpellResult CastSpell(Spell spell, int accuracy, int speed)
     {
         CombatEntity entity = GetCurrentEntity();
         int damage = spell.Damage;
@@ -107,8 +107,8 @@ public class CombatController
         {
             damage = 0;
         }
-        target.Damage(damage);
         SwitchTurn();
+        GetCurrentEntity().Damage(damage);
         return new SpellResult(spell, damage);
     }
     
