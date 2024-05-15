@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Combat.Controller;
+using Keyboard;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -22,7 +23,8 @@ public class CombatUI : MonoBehaviour
     private HealthBarManager playerHealth;
     [SerializeField]
     private HealthBarManager enemyHealth;
-    
+
+    [SerializeField] private Typing typingBox;
     
     private CombatLoader loader;
     private CombatController controller;
@@ -71,13 +73,52 @@ public class CombatUI : MonoBehaviour
         yield return new WaitForSeconds(2);
         CombatController.SpellResult result = controller.DoPlayerTurn(spell, accuracy, speed);
         logArea.SetText(result.damage > 0
-            ? $"You cast {result.spell} and it did {result.damage}"
+            ? $"You cast {result.spell} and it did {result.damage} damage"
             : $"You failed to cast {result.spell}");
+        if (CheckIfEnding()) yield break;
         yield return new WaitForSeconds(2);
         result = controller.DoAITurn();
         logArea.SetText(result.damage > 0
-            ? $"{loader.Info.Enemy.name} cast {result.spell} and it did {result.damage}"
+            ? $"{loader.Info.Enemy.name} cast {result.spell} and it did {result.damage} damage"
             : $"{loader.Info.Enemy.name} failed to cast {result.spell}");
         optionsSection.gameObject.SetActive(true);
+        CheckIfEnding();
+    }
+
+    private bool CheckIfEnding()
+    {
+        if (loader.Info.Player.Health <= 0)
+        {
+            StartCoroutine(PlayerLost());
+            return true;
+        }
+        
+        if (loader.Info.Enemy.Health <= 0) {
+                StartCoroutine(PlayerWon());
+                return true;
+        }
+
+        return false;
+
+        IEnumerator PlayerWon()
+        {
+            yield return new WaitForSeconds(2);
+
+            logArea.SetText("You won :D");
+            yield return new WaitForSeconds(2);
+
+            CombatLoader.Instance.Complete(new CombatResult(true, false, loader.Info.Player.Health,
+                loader.Info.Enemy.Health));
+        }
+        
+        IEnumerator PlayerLost()
+        {
+            yield return new WaitForSeconds(2);
+            logArea.SetText("You lost :D");
+            yield return new WaitForSeconds(2);
+
+            CombatLoader.Instance.Complete(new CombatResult(false, false, loader.Info.Player.Health,
+                loader.Info.Enemy.Health));
+        }
     }
 }
