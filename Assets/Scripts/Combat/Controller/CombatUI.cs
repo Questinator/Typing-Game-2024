@@ -24,16 +24,24 @@ public class CombatUI : MonoBehaviour
     [SerializeField]
     private HealthBarManager enemyHealth;
 
+    [SerializeField] private Transform typingArea;
     [SerializeField] private Typing typingBox;
-    
+    [SerializeField] private TMP_Text wpmBox;
+    [SerializeField] private TMP_Text accBox;
+
     private CombatLoader loader;
     private CombatController controller;
+
+    private bool isTyping;
+    private Spell spellBeingCast;
     public void Start()
     {
         loader = CombatLoader.Instance;
         controller = new CombatController(new List<CombatEntity> {loader.Info.Player,loader.Info.Enemy});
 
         spellArea.gameObject.SetActive(false);
+        typingArea.gameObject.SetActive(false);
+        
         foreach (Spell spell in loader.Info.Player.Spells)
         {
             Button newButton = Instantiate(spellButton, spellArea);
@@ -41,7 +49,13 @@ public class CombatUI : MonoBehaviour
             newButton.transform.GetChild(0).GetComponent<TMP_Text>().SetText(spell.name);
             newButton.onClick.AddListener(() =>
             {
-                StartCoroutine(DoAttack(spell, 100, 100));
+                spellArea.gameObject.SetActive(false);
+                typingBox.TypingTarget = spell.Incantation;
+                typingArea.gameObject.SetActive(true);
+                typingBox.StartTimingOnFirstKeyPress();
+                typingBox.SetIgnoreEnter(true);
+                isTyping = true;
+                spellBeingCast = spell;
             });
         }
         Instantiate(loader.Info.PlayerObj, playerPosition);
@@ -65,11 +79,22 @@ public class CombatUI : MonoBehaviour
         enemyHealth.Hp = loader.Info.Enemy.Health;
         playerHealth.UpdateBar();
         enemyHealth.UpdateBar();
+        if (isTyping)
+        {
+            wpmBox.SetText($"Words per minute: {Math.Round(typingBox.GetRawWpm())}/{spellBeingCast.MinSpeed}");
+            accBox.SetText($"Accuracy: {typingBox.GetAccuracy():P2}/{spellBeingCast.MinAccuracy}");
+            if (typingBox.IsEnterPressed())
+            {
+                isTyping = false;
+                typingBox.StopTiming();
+            
+                StartCoroutine(DoAttack(spellBeingCast, (int)Math.Round(100 * typingBox.GetAccuracy()), (int)Math.Round(typingBox.GetRawWpm())));
+            }
+        }
     }
 
     IEnumerator DoAttack(Spell spell, int accuracy, int speed)
     {
-        spellArea.gameObject.SetActive(false);
         yield return new WaitForSeconds(2);
         CombatController.SpellResult result = controller.DoPlayerTurn(spell, accuracy, speed);
         logArea.SetText(result.damage > 0
@@ -81,8 +106,10 @@ public class CombatUI : MonoBehaviour
         logArea.SetText(result.damage > 0
             ? $"{loader.Info.Enemy.name} cast {result.spell} and it did {result.damage} damage"
             : $"{loader.Info.Enemy.name} failed to cast {result.spell}");
-        optionsSection.gameObject.SetActive(true);
         CheckIfEnding();
+        optionsSection.gameObject.SetActive(true);
+        typingArea.gameObject.SetActive(false);
+        typingBox.Reset();
     }
 
     private bool CheckIfEnding()
@@ -114,7 +141,7 @@ public class CombatUI : MonoBehaviour
         IEnumerator PlayerLost()
         {
             yield return new WaitForSeconds(2);
-            logArea.SetText("You lost :D");
+            logArea.SetText("You lost D:");
             yield return new WaitForSeconds(2);
 
             CombatLoader.Instance.Complete(new CombatResult(false, false, loader.Info.Player.Health,
