@@ -53,24 +53,46 @@ namespace Keyboard
         
         
         private int correctKeyPressCount;
+        private bool enterPressed;
+        private bool ignoreEnter;
+
         /// <summary>
         /// Is the typing thing active?
         /// </summary>
         public bool IsRunning {  get; private set; }
-        
+
+        /// <summary>
+        /// Sentence to type
+        /// </summary>
+        public string TypingTarget
+        {
+            get => typingTarget;
+            set
+            {
+                typingTarget = value;
+                if (text != null)
+                {
+                    cachedText = CalculateTextData();
+                    text.SetText(cachedText);
+                }
+            }
+        }
+
         /// <summary>
         /// Setup
         /// </summary>
         private void Awake()
         {
+            ignoreEnter = false;
             startTime = -1;
             stopTime = -1;
             
             text = this.GameObject().GetComponent<TextMeshProUGUI>();
-            text.SetText(typingTarget);
+            text.SetText(TypingTarget);
             keyboard = new KeyboardEvents.Keyboard(0.2,0.05);
             data = "";
             correctKeyPressCount = 0;
+            enterPressed = false;
         
             typedCorrectlyColorString = Util.TMPHex(typedCorrectlyColor);
             untypedColorString = Util.TMPHex(unTypedColor);
@@ -91,6 +113,14 @@ namespace Keyboard
             while (keyboard.HasKeyPress())
             {
                 String keyData = keyboard.GetNextKeyPress();
+                if (keyData == "\n")
+                {
+                    enterPressed = true;
+                    if (ignoreEnter)
+                    {
+                        continue;
+                    }
+                }
                 if (keyData == "\b")
                 {
                     // Delete a character
@@ -99,6 +129,7 @@ namespace Keyboard
                 }
                 else
                 {
+
                     // Add keydata to the typed words
                     data += keyData;
                     // Start timing if we aren't yet
@@ -137,9 +168,9 @@ namespace Keyboard
             for (int i = 0; i < data.Length; i++)
             {
                 char expectedCharacter;
-                if (i - timesWaitedForSpace < typingTarget.Length)
+                if (i - timesWaitedForSpace < TypingTarget.Length)
                 {
-                    expectedCharacter = typingTarget[i - timesWaitedForSpace];
+                    expectedCharacter = TypingTarget[i - timesWaitedForSpace];
                 }
                 else
                 {
@@ -195,9 +226,9 @@ namespace Keyboard
             result.Append("</color>");
             result.Append("\u1111"); // This will represent our cursor
             result.Append($"<color=#{untypedColorString}>");
-            for (int i = data.Length - timesWaitedForSpace; i < typingTarget.Length; i++)
+            for (int i = data.Length - timesWaitedForSpace; i < TypingTarget.Length; i++)
             {
-                result.Append(typingTarget[i]);
+                result.Append(TypingTarget[i]);
             }
             result.Append("</color>");
             
@@ -295,7 +326,7 @@ namespace Keyboard
         /// <returns></returns>
         public int GetTotalCharacters()
         {
-            return typingTarget.Length;
+            return TypingTarget.Length;
         }
         /// <summary>
         /// Number of chacters typed
@@ -316,5 +347,19 @@ namespace Keyboard
             return correctKeyPressCount / (double)data.Length;
         }
         
+        public bool IsEnterPressed()
+        {
+            return enterPressed;
+        }
+
+        public void Reset()
+        {
+            Awake();
+        }
+
+        public void SetIgnoreEnter(bool ignore)
+        {
+            ignoreEnter = ignore;
+        }
     }
 }
