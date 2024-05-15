@@ -17,7 +17,7 @@ namespace Items
         /// <summary>
         /// The Item's name.
         /// </summary>
-        private string name;
+        private new string name;
         
         /// <summary>
         /// The ItemController.
