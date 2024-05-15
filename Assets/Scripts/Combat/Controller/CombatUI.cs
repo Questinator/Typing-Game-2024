@@ -88,7 +88,6 @@ public class CombatUI : MonoBehaviour
             {
                 isTyping = false;
                 typingBox.StopTiming();
-                logArea.gameObject.SetActive(true);
                 typingArea.gameObject.SetActive(false);
                 StartCoroutine(DoAttack(spellBeingCast, (int)Math.Round(100 * typingBox.GetTotalAccuracy()), (int)Math.Round(typingBox.GetRawWpm())));
             }
@@ -99,6 +98,7 @@ public class CombatUI : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         CombatController.SpellResult result = controller.DoPlayerTurn(spell, accuracy, speed);
+        logArea.gameObject.SetActive(true);
         logArea.SetText(result.damage > 0
             ? $"You cast {result.spell} and it did {result.damage} damage"
             : $"You failed to cast {result.spell}");
