@@ -45,8 +45,8 @@ public class CombatUI : MonoBehaviour
         foreach (Spell spell in loader.Info.Player.Spells)
         {
             Button newButton = Instantiate(spellButton, spellArea);
-            newButton.gameObject.name = spell.name;
-            newButton.transform.GetChild(0).GetComponent<TMP_Text>().SetText(spell.name);
+            newButton.gameObject.name = spell.SpellName;
+            newButton.transform.GetChild(0).GetComponent<TMP_Text>().SetText(spell.SpellName);
             newButton.onClick.AddListener(() =>
             {
                 spellArea.gameObject.SetActive(false);
@@ -100,14 +100,14 @@ public class CombatUI : MonoBehaviour
         CombatController.SpellResult result = controller.DoPlayerTurn(spell, accuracy, speed);
         logArea.gameObject.SetActive(true);
         logArea.SetText(result.damage > 0
-            ? $"You cast {result.spell} and it did {result.damage} damage"
-            : $"You failed to cast {result.spell}");
+            ? $"You cast {result.spell.SpellName} and it did {result.damage} damage"
+            : $"You failed to cast {result.spell.SpellName}");
         if (CheckIfEnding()) yield break;
         yield return new WaitForSeconds(2);
         result = controller.DoAITurn();
         logArea.SetText(result.damage > 0
-            ? $"{loader.Info.Enemy.name} cast {result.spell} and it did {result.damage} damage"
-            : $"{loader.Info.Enemy.name} failed to cast {result.spell}");
+            ? $"{loader.Info.Enemy.name} cast {result.spell.SpellName} and it did {result.damage} damage"
+            : $"{loader.Info.Enemy.name} failed to cast {result.spell.SpellName}");
         if (CheckIfEnding()) yield break;
         optionsSection.gameObject.SetActive(true);
         typingArea.gameObject.SetActive(false);
