@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combat.unity
     guid: a1494295b5b39bb46870a74b3ee1a325
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Cave.unity
+    guid: 8c97e1196d7c19c4e98c00a94b6a1dca
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Hollow.unity
+    guid: 2b0201313d51a264fb8fad0e7e4e801d
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Cavern.unity
+    guid: 511a491108830644f856e529b6b100d7
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Library.unity
+    guid: e1ba64c5f8efc114b95db4653148768f
   m_configObjects: {}

@@ -24,10 +24,10 @@ public class Persistence
     private static Persistence instance;
 
     public Vector3 NextPlayerLocation { get; set; }
-
+    public static readonly Vector3 UseSceneDefault = new Vector3(-1000, -1000, -1000);
     public Persistence()
     {
-        NextPlayerLocation = new Vector3(-1000, -1000, -1000);
+        NextPlayerLocation = UseSceneDefault;
     }
     
 }

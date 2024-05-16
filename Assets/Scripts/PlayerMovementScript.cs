@@ -25,8 +25,19 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] private float smoothTime = 0.05f;
     private float _currentVelocity;
 
+    void Awake()
+    {
+        
+    }
+    
+    
+    
     void Start()
     {
+        if (Persistence.Instance.NextPlayerLocation != Persistence.UseSceneDefault)
+        {
+            transform.position = Persistence.Instance.NextPlayerLocation;
+        }
         if (_characterController == null)
         {
             _characterController = GetComponent<CharacterController>();
