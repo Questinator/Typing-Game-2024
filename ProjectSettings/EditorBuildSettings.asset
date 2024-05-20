@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Demo Maps/Library.unity
     guid: e1ba64c5f8efc114b95db4653148768f
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Garden.unity
+    guid: 80b13439733ee9e4a9386524ab3e1d5f
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Hideout.unity
+    guid: e931a21cb9bce834cb5965f8f1ff9b00
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Inn.unity
+    guid: 9ba48a97ee0a4d74c81c27c398d81251
   m_configObjects: {}
