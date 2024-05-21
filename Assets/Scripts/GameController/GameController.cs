@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -9,14 +7,17 @@ public class GameController : MonoBehaviour
     private Transform followObj;
     private GameObject cam;
     
+    [SerializeField]
+    private GameObject pCam;
+    
     // Start is called before the first frame update
     void Start()
     {
         // Camera Initialization
         if (followObj == null) followObj = new GameObject("Camera Follow Object").transform;
-        cam = new GameObject("Main Camera");
-        cam.AddComponent<Camera>();
-        cam.AddComponent<AudioListener>();
-        cam.AddComponent<CameraController>().Init(followObj);
+        cam = Instantiate(pCam);
+        CinemachineVirtualCamera vcam = cam.GetComponent<CinemachineVirtualCamera>();
+        vcam.Follow = followObj;
+        vcam.LookAt = followObj;
     }
 }

@@ -18,7 +18,7 @@ namespace Items
         }
 
         internal static ItemController controllerReference;
-        public static ItemController GlobalController
+        public static ItemController GlobalItemController
         {
             get
             {
@@ -90,7 +90,7 @@ namespace Items
         /// <summary>
         /// Instantiates an Item into the world.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The ID of the item to add.</param>
         public void InstantiateItem(int id)
         {
             string name = GetNameFromID(id);
@@ -100,7 +100,12 @@ namespace Items
             item.AddComponent<Item>().Init(id, type, name);
             existingItems.Add(item);
         }
-
+        
+        /// <summary>
+        /// Removes an Item from the world.
+        /// </summary>
+        /// <param name="item">The item to remove.</param>
+        /// <exception cref="ArgumentException">Cannot find the item in the list of existing items.</exception>
         public void DeleteItem(GameObject item)
         {
             for (int i = 0; i < existingItems.Count; i++)
