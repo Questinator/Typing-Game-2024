@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Camera/CameraController.cs.meta
-guid: 2e5c9ca300c96184688aa4dbf211c6d6
-========
-guid: a4ea140efb186464b87660f92e6b38ce
->>>>>>>> main:Assets/Scripts/Player/Player.cs.meta
+guid: b87cc6024e09dd9469db8aef3e16e698
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

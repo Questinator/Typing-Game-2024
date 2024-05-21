@@ -1,19 +1,7 @@
-<<<<<<< Updated upstream:Assets/Scripts/PlayerMovementScript.cs
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-=======
->>>>>>> Stashed changes:Assets/Scripts/Player/PlayerMovementScript.cs
+using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-<<<<<<< Updated upstream:Assets/Scripts/PlayerMovementScript.cs
-
-[RequireComponent(typeof(CharacterController))]
-=======
 [RequireComponent(typeof(CharacterController)), RequireComponent(typeof(Player))]
->>>>>>> Stashed changes:Assets/Scripts/Player/PlayerMovementScript.cs
-
 public class PlayerMovementScript : MonoBehaviour
 {
     // Movement variables
@@ -31,21 +19,17 @@ public class PlayerMovementScript : MonoBehaviour
     // Rotation variables
     [SerializeField] private float smoothTime = 0.05f;
     private float _currentVelocity;
-
-<<<<<<< Updated upstream:Assets/Scripts/PlayerMovementScript.cs
-=======
+    
     private Player player;
 
     public GameObject cam;
-
->>>>>>> Stashed changes:Assets/Scripts/Player/PlayerMovementScript.cs
+    
     void Awake()
     {
-        
+        player = GetComponent<Player>();
     }
-    
-    
-    
+
+
     void Start()
     {
         if (Persistence.Instance.NextPlayerLocation != Persistence.UseSceneDefault)
@@ -61,12 +45,15 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ApplyRotation();
+
+        if (player.CutsceneState) return;
+
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         _direction = new Vector3(_input.x * cam.transform.forward.x, 0f, _input.y * cam.transform.forward.y);
         
         ApplyGravity();
-        ApplyRotation();
-
+        
         _characterController.Move(_direction * _moveSpeed * Time.deltaTime);
     }
 
@@ -95,4 +82,8 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
+    public void SetCutsceneState(bool state)
+    {
+        _characterController.enabled = state;
+    }
 }
