@@ -6,9 +6,13 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public Player Player => player;
+    public UIController UIController => uIController;
 
     [SerializeField]
     private Player player;
+
+    [SerializeField]
+    private UIController uIController; // this naming is cursed but I don't care
     
     [SerializeField]
     private Transform followObj;

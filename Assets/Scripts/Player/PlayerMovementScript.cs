@@ -1,4 +1,5 @@
 using System;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 
@@ -45,13 +46,12 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ApplyRotation();
-
         if (player.CutsceneState) return;
 
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         _direction = new Vector3(_input.x, 0f, _input.y);
 
+        ApplyRotation();
         ApplyGravity();
         
         _characterController.Move(_direction * _moveSpeed * Time.deltaTime);
@@ -80,10 +80,5 @@ public class PlayerMovementScript : MonoBehaviour
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, smoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
-    }
-
-    public void SetCutsceneState(bool state)
-    {
-        _characterController.enabled = state;
     }
 }
