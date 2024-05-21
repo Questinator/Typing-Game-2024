@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class NPC : MonoBehaviour
 {
     [SerializeField] private NPCDialogue npcDialogue;
-    [SerializeField] private Collider interactCollider;
 
     private GameController gameController;
     private UIController uiController;
@@ -73,6 +72,7 @@ public class NPC : MonoBehaviour
                         if (result.PlayerWon)
                         {
                             npcDialogue = npcDialogue.VictoryDialogue;
+                            Awake();
                         } 
                         else if (result.PlayerRan)
                         {

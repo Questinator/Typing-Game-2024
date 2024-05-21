@@ -22,3 +22,10 @@ MonoBehaviour:
   - text:
     - WHAT! You wanted to talk to me again?
     - That's so polite!
+  endWithBattle: 1
+  victoryDialogue: {fileID: 11400000, guid: cfbe25902b51d9d4aab6f0afd0012ca0, type: 2}
+  loseScene: MainMenu
+  player: {fileID: 11400000, guid: 54f5e14362de641488dc17b37b7857c0, type: 2}
+  enemy: {fileID: 11400000, guid: 5e2c51cdaa1e66646abb62ddc81e44c9, type: 2}
+  playerModel: {fileID: 919132149155446097, guid: 06b9e14aee22b9547ba2012139292452, type: 3}
+  enemyModel: {fileID: 919132149155446097, guid: d850dca0996ea614da538ec2d3a23bf7, type: 3}
