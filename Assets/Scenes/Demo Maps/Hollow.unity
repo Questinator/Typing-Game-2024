@@ -709,6 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcDialogue: {fileID: 11400000, guid: 628ad654fed56ad43b8fff4b16cdbb5d, type: 2}
+  interactCollider: {fileID: 0}
 --- !u!135 &801349005
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2653,6 +2654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 5900697338846695540, guid: cc05a7b001ba15d48bb44195871c94d8, type: 3}
+      propertyPath: pCam
+      value: 
+      objectReference: {fileID: 924121349282330986, guid: c6d6765aa8e316a4b81ff604fcd23b46, type: 3}
     - target: {fileID: 5900697338846695540, guid: cc05a7b001ba15d48bb44195871c94d8, type: 3}
       propertyPath: player
       value: 
