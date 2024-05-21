@@ -27,17 +27,20 @@ public class PlayerMovementScript : MonoBehaviour
 
     void Awake()
     {
-        
+        if (Persistence.Instance.NextPlayerLocation != Persistence.UseSceneDefault)
+        {
+            Debug.Log(Persistence.Instance.NextPlayerLocation);
+            transform.position = Persistence.Instance.NextPlayerLocation;
+            Debug.Log(transform.position);
+        }
     }
     
     
     
     void Start()
     {
-        if (Persistence.Instance.NextPlayerLocation != Persistence.UseSceneDefault)
-        {
-            transform.position = Persistence.Instance.NextPlayerLocation;
-        }
+        Debug.Log(transform.position);
+
         if (_characterController == null)
         {
             _characterController = GetComponent<CharacterController>();
@@ -47,6 +50,8 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(transform.position);
+
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         _direction = new Vector3(_input.x, 0f, _input.y);
 
