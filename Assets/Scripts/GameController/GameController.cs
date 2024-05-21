@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public Player Player => player;
+
+    [SerializeField]
+    private Player player;
+    
     [SerializeField]
     private Transform followObj;
     private GameObject cam;
