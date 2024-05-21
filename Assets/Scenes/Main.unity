@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followObj: {fileID: 0}
+  pCam: {fileID: 924121349282330986, guid: c6d6765aa8e316a4b81ff604fcd23b46, type: 3}
 --- !u!4 &920082719
 Transform:
   m_ObjectHideFlags: 0
