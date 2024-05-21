@@ -26,16 +26,17 @@ public class PlayerMovementScript : MonoBehaviour
 
     void Awake()
     {
+        if (Persistence.Instance.NextPlayerLocation != Persistence.UseSceneDefault)
+        {
+            transform.position = Persistence.Instance.NextPlayerLocation;
+        }
         player = GetComponent<Player>();
     }
 
 
     void Start()
     {
-        if (Persistence.Instance.NextPlayerLocation != Persistence.UseSceneDefault)
-        {
-            transform.position = Persistence.Instance.NextPlayerLocation;
-        }
+
         if (_characterController == null)
         {
             _characterController = GetComponent<CharacterController>();

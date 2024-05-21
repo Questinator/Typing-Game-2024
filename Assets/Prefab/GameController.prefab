@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   followObj: {fileID: 0}
+  pCam: {fileID: 924121349282330986, guid: c6d6765aa8e316a4b81ff604fcd23b46, type: 3}
