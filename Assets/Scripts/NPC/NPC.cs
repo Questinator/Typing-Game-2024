@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Combat.Controller;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPC : MonoBehaviour
 {
@@ -65,7 +67,23 @@ public class NPC : MonoBehaviour
 
             if (npcDialogue.EndWithBattle)
             {
-                Debug.Log("start battle!");
+                CombatLoader.Instance.Load(new CombatInfo(npcDialogue.PlayerModel,npcDialogue.EnemyModel,npcDialogue.Player,npcDialogue.Enemy),
+                    result =>
+                    {
+                        if (result.PlayerWon)
+                        {
+                            npcDialogue = npcDialogue.VictoryDialogue;
+                        } 
+                        else if (result.PlayerRan)
+                        {
+                            
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene(npcDialogue.LoseScene);
+                        }
+                        
+                    });
             }
 
             return;

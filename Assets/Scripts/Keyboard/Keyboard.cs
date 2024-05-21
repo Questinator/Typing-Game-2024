@@ -53,7 +53,6 @@ namespace KeyboardEvents
                     keyStates[code].DepressedTime = Time.time;
                     EnqueueKey(code, shiftDown);
                 }
-
                 if (keyStates[code].IsDown)
                 {
                     if (Time.time - keyStates[code].DepressedTime > repeatDelay + repeatRate)
