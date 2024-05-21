@@ -8,8 +8,10 @@ using UnityEngine;
 public class NPCDialogue : ScriptableObject
 {
     [SerializeField] private Dialogue[] dialogue;
+    [SerializeField] private bool endWithBattle;
 
     public Dialogue[] Dialogue => dialogue;
+    public bool EndWithBattle => endWithBattle;
 }
 
 /// <summary>

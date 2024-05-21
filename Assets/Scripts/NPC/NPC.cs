@@ -62,6 +62,12 @@ public class NPC : MonoBehaviour
 
             // Stop the loop
             uiController.CloseDialogueBox();
+
+            if (npcDialogue.EndWithBattle)
+            {
+                Debug.Log("start battle!");
+            }
+
             return;
         }
 
