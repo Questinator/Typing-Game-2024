@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private NPCDialogue npcDialogue;
+    [SerializeField] private Collider interactCollider;
+
+    private Player player;
+
+
+    private void Awake()
     {
-        
+        player = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().Player;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            player.CutsceneState = true;
+        }
     }
 }

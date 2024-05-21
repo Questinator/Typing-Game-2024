@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController)), RequireComponent(typeof(Player))]
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -25,13 +22,14 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] private float smoothTime = 0.05f;
     private float _currentVelocity;
 
+    private Player player;
+
     void Awake()
     {
-        
+        player = GetComponent<Player>();
     }
-    
-    
-    
+
+
     void Start()
     {
         if (Persistence.Instance.NextPlayerLocation != Persistence.UseSceneDefault)
@@ -47,12 +45,15 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ApplyRotation();
+
+        if (player.CutsceneState) return;
+
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         _direction = new Vector3(_input.x, 0f, _input.y);
 
         ApplyGravity();
-        ApplyRotation();
-
+        
         _characterController.Move(_direction * _moveSpeed * Time.deltaTime);
     }
 
@@ -81,4 +82,8 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
+    public void SetCutsceneState(bool state)
+    {
+        _characterController.enabled = state;
+    }
 }
