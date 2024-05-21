@@ -145,6 +145,91 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3920987482455494174, guid: 4886dea1e7c85a84bb190bbc06c29e6d, type: 3}
+--- !u!1001 &109929860
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.9326
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9.957269
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.4767
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198164929159725449, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570532010419962214, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: m_Name
+      value: Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375398582561379821, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: sceneToLoad
+      value: Assets/Scenes/Demo Maps/Hollow.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375398582561379821, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: spawnLocation.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375398582561379821, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: spawnLocation.y
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375398582561379821, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
+      propertyPath: spawnLocation.z
+      value: -5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
 --- !u!64 &150614649
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1110,3 +1195,4 @@ SceneRoots:
   - {fileID: 1912264756}
   - {fileID: 1426869890}
   - {fileID: 1453768673}
+  - {fileID: 109929860}
