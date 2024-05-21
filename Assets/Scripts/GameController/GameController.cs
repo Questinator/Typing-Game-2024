@@ -24,5 +24,7 @@ public class GameController : MonoBehaviour
         CinemachineVirtualCamera vcam = cam.GetComponent<CinemachineVirtualCamera>();
         vcam.Follow = followObj;
         vcam.LookAt = followObj;
+
+        player.movementScript.cam = cam;
     }
 }

@@ -1,9 +1,7 @@
 using System;
 using UnityEngine;
 
-
 [RequireComponent(typeof(CharacterController)), RequireComponent(typeof(Player))]
-
 public class PlayerMovementScript : MonoBehaviour
 {
     // Movement variables
@@ -21,9 +19,11 @@ public class PlayerMovementScript : MonoBehaviour
     // Rotation variables
     [SerializeField] private float smoothTime = 0.05f;
     private float _currentVelocity;
-
+    
     private Player player;
 
+    public GameObject cam;
+    
     void Awake()
     {
         player = GetComponent<Player>();
@@ -51,7 +51,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         _direction = new Vector3(_input.x, 0f, _input.y);
-
+        
         ApplyGravity();
         
         _characterController.Move(_direction * _moveSpeed * Time.deltaTime);
@@ -74,7 +74,7 @@ public class PlayerMovementScript : MonoBehaviour
     }
     private void ApplyRotation()
     {
-        if (_input.sqrMagnitude != 0)
+        if (_input.magnitude != 0)
         {
             var targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, smoothTime);

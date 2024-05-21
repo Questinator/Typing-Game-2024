@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
         }
     }
     private bool cutsceneState;
-
-    private PlayerMovementScript movementScript;
+    
+    public PlayerMovementScript movementScript;
 
     private void Awake()
     {

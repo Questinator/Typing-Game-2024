@@ -353,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 444334260}
   m_Layer: 0
-  m_Name: Follow Object
+  m_Name: Point To Follow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,13 +367,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444334259}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15354379, y: -0.040937126, z: 0.01926675, w: 0.98710555}
-  m_LocalPosition: {x: 0, y: 2.32, z: -4.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.9}
+  m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 564408549}
-  m_LocalEulerAnglesHint: {x: 17.74, y: -4.51, z: 1.532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &446820945
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -989,6 +989,51 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 9176310897612776759, guid: 93efe294d7a89e24391a2e078d69ff90, type: 3}
+--- !u!1 &1259864294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1259864295}
+  - component: {fileID: 1259864296}
+  m_Layer: 0
+  m_Name: Follow Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1259864295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259864294}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1259864296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259864294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5c9ca300c96184688aa4dbf211c6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointToFollow: {fileID: 444334260}
 --- !u!64 &1262249130
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2277,13 +2322,11 @@ PrefabInstance:
       value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 5900697338846695540, guid: cc05a7b001ba15d48bb44195871c94d8, type: 3}
-      propertyPath: player
+      propertyPath: pCam
       value: 
-      objectReference: {fileID: 1615769610}
+      objectReference: {fileID: 924121349282330986, guid: c6d6765aa8e316a4b81ff604fcd23b46, type: 3}
     - target: {fileID: 5900697338846695540, guid: cc05a7b001ba15d48bb44195871c94d8, type: 3}
-      propertyPath: followObj
-      value: 
-      objectReference: {fileID: 444334260}
+      objectReference: {fileID: 1259864295}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2297,5 +2340,6 @@ SceneRoots:
   - {fileID: 1810593571}
   - {fileID: 1309067995}
   - {fileID: 1615769605}
+  - {fileID: 1259864295}
   - {fileID: 1307078889}
   - {fileID: 791895836}
