@@ -4,5 +4,38 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: ad8e66dc168fdf444bd8e8e70999eaa8
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: d05339c1fa04f1c5399d1b838cb06835
+  - enabled: 1
+    path: Assets/Scenes/CombatTest.unity
+    guid: 4746632ffd4e9e4409c4e9afeb02bfa9
+  - enabled: 1
+    path: Assets/Scenes/Combat.unity
+    guid: a1494295b5b39bb46870a74b3ee1a325
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Cave.unity
+    guid: 8c97e1196d7c19c4e98c00a94b6a1dca
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Hollow.unity
+    guid: 2b0201313d51a264fb8fad0e7e4e801d
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Cavern.unity
+    guid: 511a491108830644f856e529b6b100d7
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Library.unity
+    guid: e1ba64c5f8efc114b95db4653148768f
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Garden.unity
+    guid: 80b13439733ee9e4a9386524ab3e1d5f
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Hideout.unity
+    guid: e931a21cb9bce834cb5965f8f1ff9b00
+  - enabled: 1
+    path: Assets/Scenes/Demo Maps/Inn.unity
+    guid: 9ba48a97ee0a4d74c81c27c398d81251
   m_configObjects: {}
