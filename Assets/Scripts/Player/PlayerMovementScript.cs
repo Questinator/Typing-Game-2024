@@ -50,7 +50,7 @@ public class PlayerMovementScript : MonoBehaviour
         if (player.CutsceneState) return;
 
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        _direction = new Vector3(_input.x * cam.transform.forward.x, 0f, _input.y * cam.transform.forward.y);
+        _direction = new Vector3(_input.x, 0f, _input.y);
         
         ApplyGravity();
         
