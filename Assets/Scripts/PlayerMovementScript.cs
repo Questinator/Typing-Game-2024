@@ -1,11 +1,18 @@
+<<<<<<< Updated upstream:Assets/Scripts/PlayerMovementScript.cs
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+=======
+>>>>>>> Stashed changes:Assets/Scripts/Player/PlayerMovementScript.cs
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+<<<<<<< Updated upstream:Assets/Scripts/PlayerMovementScript.cs
 
 [RequireComponent(typeof(CharacterController))]
+=======
+[RequireComponent(typeof(CharacterController)), RequireComponent(typeof(Player))]
+>>>>>>> Stashed changes:Assets/Scripts/Player/PlayerMovementScript.cs
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -25,6 +32,13 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] private float smoothTime = 0.05f;
     private float _currentVelocity;
 
+<<<<<<< Updated upstream:Assets/Scripts/PlayerMovementScript.cs
+=======
+    private Player player;
+
+    public GameObject cam;
+
+>>>>>>> Stashed changes:Assets/Scripts/Player/PlayerMovementScript.cs
     void Awake()
     {
         
@@ -48,8 +62,8 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        _direction = new Vector3(_input.x, 0f, _input.y);
-
+        _direction = new Vector3(_input.x * cam.transform.forward.x, 0f, _input.y * cam.transform.forward.y);
+        
         ApplyGravity();
         ApplyRotation();
 
@@ -73,7 +87,7 @@ public class PlayerMovementScript : MonoBehaviour
     }
     private void ApplyRotation()
     {
-        if (_input.sqrMagnitude != 0)
+        if (_input.magnitude != 0)
         {
             var targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, smoothTime);
