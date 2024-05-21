@@ -717,15 +717,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3375398582561379821, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
       propertyPath: spawnLocation.x
-      value: 10
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 3375398582561379821, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
       propertyPath: spawnLocation.y
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3375398582561379821, guid: 972adddd5c9166e4e812ff37b6ecd042, type: 3}
       propertyPath: spawnLocation.z
-      value: 12
+      value: 44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
