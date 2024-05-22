@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a616a29582dfb4aac971ffec4c0f0b, type: 3}
+  m_Name: electrostasis
+  m_EditorClassIdentifier: 
+  spellName: Electrostatic Beam
+  incantation: Since classical times, it has been known that some materials, such
+    as amber, attract lightweight particles after rubbing. The Greek word for amber,
+    electron, was thus the source of the word 'electricity'. Electrostatic phenomena
+    arise from the forces that electric charges exert on each other. Such forces
+    are described by Coulomb's law.
+  minSpeed: 90
+  minAccuracy: 95
+  critSpeedThreshhold: 120
+  critAccuracyThreshold: 99
+  critMultiplier: 5
+  damage: 50

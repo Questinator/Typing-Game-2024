@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25a616a29582dfb4aac971ffec4c0f0b, type: 3}
-  m_Name: shimiyay shimiyay shimiyay shimiyaaa falalalaa
+  m_Name: engulf
   m_EditorClassIdentifier: 
-  spellName: shimiyay shimiyay shimiyay shimiyaaa falalalaa
-  incantation: shimiyay shimiyay shimiyay shimiyaaa falalalaa
-  minSpeed: 100
-  minAccuracy: 99
-  critSpeedThreshhold: 200
-  critAccuracyThreshold: 100
-  critMultiplier: 100
-  damage: 80
+  spellName: Engulf
+  incantation: N/A
+  minSpeed: 40
+  minAccuracy: 60
+  critSpeedThreshhold: 60
+  critAccuracyThreshold: 80
+  critMultiplier: 2
+  damage: 15

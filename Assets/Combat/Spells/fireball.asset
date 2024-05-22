@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: fireball
   m_EditorClassIdentifier: 
   spellName: Fireball
-  incantation: FIRE IN THE HOLE!
+  incantation: By the flames of the ancient pyres, I summon forth the infernal fires.
+    From the core of the earth's seething might, Ignite and blaze with burning light!
+    Spirits of fire, heed my call, Release the power, let fireball fall!
   minSpeed: 15
   minAccuracy: 80
   critSpeedThreshhold: 30
