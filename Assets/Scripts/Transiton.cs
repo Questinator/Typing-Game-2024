@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Transiton : MonoBehaviour
 {
@@ -25,4 +26,9 @@ public class Persistence
 
     public Vector3 NextPlayerLocation { get; set; } = UseSceneDefault;
     public static readonly Vector3 UseSceneDefault = new Vector3(-1000, -1000, -1000);
+
+    public static void ClearPersistence()
+    {
+        Persistence.Instance.NextPlayerLocation = UseSceneDefault;
+    }
 }

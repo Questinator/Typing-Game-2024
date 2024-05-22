@@ -94,6 +94,7 @@ public class NPC : MonoBehaviour
 
             if (npcDialogue.FinishGameUponEnd)
             {
+                Persistence.ClearPersistence();
                 SceneManager.LoadScene("Main Menu");
             }
 
