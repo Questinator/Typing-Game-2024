@@ -73,6 +73,11 @@ public class NPC : MonoBehaviour
                         {
                             npcDialogue = npcDialogue.VictoryDialogue;
                             Awake();
+
+                            if (npcDialogue.PoofIfDefeated)
+                            {
+                                Destroy(gameObject);
+                            }
                         } 
                         else if (result.PlayerRan)
                         {
