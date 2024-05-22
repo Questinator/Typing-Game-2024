@@ -28,7 +28,7 @@ public class NPCDialogue : ScriptableObject
 
     public NPCDialogue VictoryDialogue => victoryDialogue;
 
-    public string LoseScene => LoseScene;
+    public string LoseScene => loseScene;
 
     public CombatEntity Player => player;
 
