@@ -12,7 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87cc6024e09dd9469db8aef3e16e698, type: 3}
   m_Name: Geestrul
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - text:
+    - HELLO I AM GEESTRUL!
+    - SOME PEOPLE THINK I AM AN ANNOYING CHILD
+    - THOSE PEOPLE ARE WRONG!
+    - I AM NOT ANNOYING
+    - THEY ALSO THINK I AM TOO LOUD
+    - i   c a n    b e    q u i e t    t h o u g h
+    - T h i s      i s       m y      HIDEOUT
+    - MY SECRET FORTRESS!
+    - MY MAGNIFICENT CASTLE
+    - MY CENTER OF POWER
+    - MY DOMAIN!
+  - text:
+    - NOW SCRAM!
+    - THIS IS MY SECRET HIDEOUT
+    - i  w o u l d  n e v e r    s t e a l    s o m e o n e  e l s e s
+    - SO IT'S MY HIDEOUT
+    - GET OUT!
   endWithBattle: 0
   victoryDialogue: {fileID: 0}
   loseScene: 
