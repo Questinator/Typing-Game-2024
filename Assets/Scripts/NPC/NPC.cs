@@ -6,7 +6,6 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     [SerializeField] private NPCDialogue npcDialogue;
-    [SerializeField] private Collider interactCollider;
 
     private GameController gameController;
     private UIController uiController;
