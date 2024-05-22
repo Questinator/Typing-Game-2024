@@ -71,6 +71,12 @@ public class NPC : MonoBehaviour
                     {
                         if (result.PlayerWon)
                         {
+                            if (npcDialogue.PoofIfDefeated)
+                            {
+                                Destroy(gameObject);
+                                return;
+                            }
+
                             npcDialogue = npcDialogue.VictoryDialogue;
                             Awake();
                         } 

@@ -15,6 +15,7 @@ public class NPCDialogue : ScriptableObject
     [SerializeField] private CombatEntity enemy;
     [SerializeField] private GameObject playerModel;
     [SerializeField] private GameObject enemyModel;
+    [SerializeField] private bool poofIfDefeated;
 
 
     public GameObject PlayerModel => playerModel;
@@ -31,6 +32,7 @@ public class NPCDialogue : ScriptableObject
     public CombatEntity Player => player;
 
     public CombatEntity Enemy => enemy;
+    public bool PoofIfDefeated => poofIfDefeated;
 }
 
 /// <summary>
