@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87cc6024e09dd9469db8aef3e16e698, type: 3}
+  m_Name: Melvil
+  m_EditorClassIdentifier: 
+  dialogue:
+  - text:
+    - Hello my name is Melvil!
+    - I am the libararian
+    - I make sure all of the books are in order
+    - 'We don''t have any on shelves right now though D:'
+  - text:
+    - I hope you like my libarary!
+    - Have you explored the hollow yet?
+    - The people here are very friendly!
+    - It truly is a wonderful little village
+  - text:
+    - I see your a bit of a magician
+    - I hope you know that some of your spells require you to say them fast enough
+    - They also tend to require you to say the words right.
+    - Sometimes spells do more if you say them faster
+  endWithBattle: 0
+  victoryDialogue: {fileID: 0}
+  loseScene: 
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  playerModel: {fileID: 0}
+  enemyModel: {fileID: 0}
