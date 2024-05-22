@@ -60,6 +60,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
+  sprintIncrease: 2
+  rotSpeed: 180
+  sprintRotIncrease: 0.9
   _gravity: -9.81
   gravityMultiplier: 0.5
   smoothTime: 0.15
@@ -88,7 +91,7 @@ CharacterController:
   m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -0.43, z: 0}
+  m_Center: {x: 0, y: -0.37, z: 0}
 --- !u!1001 &8250625810412639615
 PrefabInstance:
   m_ObjectHideFlags: 0
