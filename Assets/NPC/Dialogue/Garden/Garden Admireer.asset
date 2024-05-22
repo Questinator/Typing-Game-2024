@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87cc6024e09dd9469db8aef3e16e698, type: 3}
+  m_Name: Garden Admireer
+  m_EditorClassIdentifier: 
+  dialogue:
+  - text:
+    - Hello.
+    - I am Arcadia
+    - I come here a lot to relax
+    - Looking out on the unending void
+    - The sounds of nature all around
+    - The teleportation magic on the doorway here is really something isn't it?
+    - It is fantastic to get away from everything
+    - I make books you know
+    - They are really good books
+    - I just need to make so many
+    - And it never stops
+    - So I come here a lot to look out on the universe
+    - It is strangely beautiful to look out and see how small you are
+    - And yet that doesn't make this little insignificant garden any less beautiful
+    - It also helps me with my worries
+    - If I am this small compared to everything
+    - Then my worries can't be that big
+    - That's why I think this place is so special
+    - I don't know why I told you all this
+    - Well thanks for listening
+    - Sometimes it's nice to have someone who is good at listening
+    - Hopefully you can find the same peace from this place that I can
+    - Anyway I think we should just enjoy this in silence.
+  - text:
+    - I think enjoying this beautiful place in silence is the best for both of us
+  endWithBattle: 0
+  victoryDialogue: {fileID: 0}
+  loseScene: 
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  playerModel: {fileID: 0}
+  enemyModel: {fileID: 0}
