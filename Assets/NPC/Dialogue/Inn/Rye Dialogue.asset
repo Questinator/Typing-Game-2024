@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87cc6024e09dd9469db8aef3e16e698, type: 3}
+  m_Name: Rye Dialogue
+  m_EditorClassIdentifier: 
+  dialogue:
+  - text:
+    - Hello I am Rye!
+    - I am the innkeeper here!
+    - These chairs are pretty stupid looking right?
+    - How would anyone sit in them?
+    - I blame the talking mushroom who sold them to use
+  - text:
+    - There really isn't anything for you to do here
+    - I hear that there is some unrest in the cave
+  endWithBattle: 0
+  victoryDialogue: {fileID: 0}
+  loseScene: 
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  playerModel: {fileID: 0}
+  enemyModel: {fileID: 0}
