@@ -92,6 +92,11 @@ public class NPC : MonoBehaviour
                     });
             }
 
+            if (npcDialogue.FinishGameUponEnd)
+            {
+                SceneManager.LoadScene("Main Menu");
+            }
+
             return;
         }
 
